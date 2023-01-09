@@ -26,20 +26,20 @@ public class Employee {
     private String password;
 
     @Column(name = "em1_firstname")
-    private float em1Firstname;
+    private String em1Firstname;
 
     @Column(name = "em1_lastname")
-    private float em1Lastname;
+    private String em1Lastname;
 
     @Column(name = "em1_phone")
-    private float em1Phone;
+    private String em1Phone;
 
     @Column(name = "em2_firstname")
-    private float em2Firstname;
+    private String em2Firstname;
 
     @Column(name = "em2_lastname")
-    private float em2Lastname;
+    private String em2Lastname;
 
     @Column(name = "em2_phone")
-    private float em2Phone;
+    private String em2Phone;
 }

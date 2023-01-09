@@ -23,23 +23,14 @@ public class BeaconfireTimesheetEmployeeApplication {
     @Bean
     ApplicationRunner applicationRunner(EmployeeRepository repository) {
         return args -> {
-//            repository.save(new Employee("breakfast", 5));
-//            repository.save(new Employee("coffee", 2));
-//            repository.save(new Employee("New SSD drive", 200));
-//            repository.save(new Employee("Tution for baby", 350));
-//
-//            Iterable<Employee> iterator = repository.findAll();
-//
-//            System.out.println("All expense items: ");
-//            iterator.forEach(item -> System.out.println(item));
-//
-//            List<Employee> breakfast = repository.findByItem("breakfast");
-//            System.out.println("\nHow does my breakfast cost?: ");
-//            breakfast.forEach(item -> System.out.println(item));
-//
-//            List<Employee> expensiveItems = repository.listItemsWithPriceOver(200);
-//            System.out.println("\nExpensive Items: ");
-//            expensiveItems.forEach(item -> System.out.println(item));
+            repository.save(new Employee().builder()
+                    .email("123@gmail.com")
+                            .phone("123456")
+                            .password("password")
+                            .address("add")
+                            .em1Lastname("l")
+                    .build()
+            );
         };
     }
 
