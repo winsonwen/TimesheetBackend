@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: gateway-service
+
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+          filters:
+            - RewritePath=/auth(?<segment>.*),$\{segment}
+        - id: employee-service
+          uri: lb://employee-service
+          predicates:
+            - Path=/employee/**
+          filters:
+            - RewritePath=/employee(?<segment>.*),$\{segment}
+        - id: composite-service
+          uri: lb://composite-service
+          predicates:
+            - Path=/composite/**
+          filters:
+            - RewritePath=/composite(?<segment>.*),$\{segment}
+        - id: timesheet-service
+          uri: lb://timesheet-service
+          predicates:
+            - Path=/timesheet/**
+          filters:
+            - RewritePath=/timesheet(?<segment>.*),$\{segment}
+server:
+  port: 8080
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true

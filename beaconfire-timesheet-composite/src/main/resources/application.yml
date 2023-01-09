@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: composite-service
+
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}

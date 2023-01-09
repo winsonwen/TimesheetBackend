@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.beaconfire.timesheet</groupId>
+	<artifactId>beaconfire</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>timesheet</name>
+	<description> Aggregation services</description>
+
+	<packaging>pom</packaging>
+	<modules>
+		<module>beaconfire-timesheet-auth</module>
+		<module>beaconfire-timesheet-composite</module>
+		<module>beaconfire-timesheet-gateway</module>
+		<module>beaconfire-timesheet-timesheet</module>
+		<module>beaconfire-timesheet-eureka</module>
+		<module>beaconfire-timesheet-employee</module>
+
+    </modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
