@@ -20,9 +20,6 @@ public class BeaconfireTimesheetTimesheetServerApplication implements CommandLin
 
 
 
-
-
-
     //Test
     @Autowired
     private MongoTestRepository mongoTestRepository;

@@ -1,6 +1,12 @@
 spring:
   application:
     name: timesheet-service
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 2MB
+      max-file-size: 5MB
+      max-request-size: 10MB
 
 
 
@@ -11,4 +17,20 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+
+
+cloud:
+  aws:
+    credentials:
+      access-key: AKIATB4HFZTK25CHMAOT
+      secret-key: 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
+    region:
+      static: us-east-1
+    stack:
+      auto: false
+
+application:
+  bucket:
+    name: timesheetstorage
 
