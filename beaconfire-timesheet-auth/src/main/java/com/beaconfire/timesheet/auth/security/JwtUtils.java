@@ -12,9 +12,9 @@ public class JwtUtils {
     private final JwtConfig jwtConfig;
     @Autowired
     public JwtUtils(JwtConfig jwtConfig) {this.jwtConfig = jwtConfig;}
-    public String generateToken(String email) {
+    public String generateToken(String username) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(username)
                 .setExpiration(new Date(System.currentTimeMillis() + jwtConfig.getExpiration()))
                 .signWith(SignatureAlgorithm.HS256, jwtConfig.getSecretKey())
                 .compact();

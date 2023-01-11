@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
-    private List<User> userList;
+    private final List<User> userList;
     public UserDAOImpl() {
         userList = new ArrayList<>();
         userList.add(new User(1, "1111", "1111"));

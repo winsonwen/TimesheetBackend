@@ -22,6 +22,10 @@ public class LoginController {
         this.userService = userService;
         this.jwtUtils = jwtUtils;
     }
+    @RequestMapping(method = RequestMethod.POST)
+    public String tst() {
+        return "!!!!!!!!";
+    }
     @RequestMapping(method = RequestMethod.POST, value = "/getToken", consumes = "application/json")
     public HashMap<String, String> login(@RequestBody HashMap<String, String> user) {
         User currentUser = userService.gerUserByUsername(user.get("username"));
@@ -33,6 +37,8 @@ public class LoginController {
             response.put("userId", userId.toString());
             return response;
         }
-        return null;
+        HashMap<String, String> response = new HashMap<>();
+        response.put("msg", "Failed!");
+        return response;
     }
 }
