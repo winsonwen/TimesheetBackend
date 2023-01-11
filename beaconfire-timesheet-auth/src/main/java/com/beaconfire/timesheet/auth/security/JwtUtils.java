@@ -20,7 +20,7 @@ public class JwtUtils {
                 .compact();
     }
 
-    public String getEmailFromToken(String bearerToken) {
+    public String getUsernameFromToken(String bearerToken) {
         String token = bearerToken.substring(7);
         return Jwts.parser()
                 .setSigningKey(jwtConfig.getSecretKey())
