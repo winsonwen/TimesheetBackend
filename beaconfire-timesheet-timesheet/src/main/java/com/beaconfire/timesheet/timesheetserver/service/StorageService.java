@@ -5,6 +5,9 @@ import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 import com.amazonaws.util.IOUtils;
+import com.beaconfire.timesheet.timesheetserver.domain.TimesheetFile;
+import com.beaconfire.timesheet.timesheetserver.repository.TimesheetFileRepository;
+import com.beaconfire.timesheet.timesheetserver.repository.TimesheetRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,11 +28,23 @@ public class StorageService {
     @Autowired
     private AmazonS3 s3Client;
 
+    @Autowired
+    private TimesheetFileRepository timesheetFileRepository;
+
     public String uploadFile(MultipartFile file) {
         File fileObj = convertMultiPartFileToFile(file);
         String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
         s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj));
         fileObj.delete();
+        return "File uploaded : " + fileName;
+    }
+
+    public String uploadFileTimesheet(MultipartFile file, int isTimesheetApproved) {
+        File fileObj = convertMultiPartFileToFile(file);
+        String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+        s3Client.putObject(new PutObjectRequest(bucketName, fileName, fileObj));
+        fileObj.delete();
+        timesheetFileRepository.save(new TimesheetFile().builder().fileName(fileName).isTimesheetApproved(isTimesheetApproved == 1 ? true : false).build());
         return "File uploaded : " + fileName;
     }
 

@@ -11,9 +11,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @ToString
 @Document
-public class MongoTest {
+public class TimesheetFile {
 	
 	@Id
 	private String id;
-	private String name;
+	private String fileName;
+	private Boolean isTimesheetApproved;
 }
