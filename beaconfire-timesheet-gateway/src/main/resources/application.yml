@@ -27,6 +27,7 @@ spring:
           uri: lb://timesheet-service
           predicates:
             - Path=/timesheet/**
+            - Path=/**
           filters:
             - RewritePath=/timesheet(?<segment>.*),$\{segment}
 server:
