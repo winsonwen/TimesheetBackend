@@ -7,11 +7,14 @@ import com.beaconfire.timesheet.timesheetserver.domain.TimesheetDetail;
 import com.beaconfire.timesheet.timesheetserver.repository.OffDayCountRepository;
 import com.beaconfire.timesheet.timesheetserver.repository.TimesheetRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -98,5 +101,10 @@ public class TimesheetService {
     public Timesheet getTimesheetById(String generateTimesheetId) {
         Optional<Timesheet> byId = timesheetRepository.findById(generateTimesheetId);
         return byId.orElse(null);
+    }
+
+    public List<Timesheet>  getAllTimesheets()
+    {
+        return timesheetRepository.findAll(Sort.by(Sort.Direction.DESC, "endingDay"));
     }
 }
