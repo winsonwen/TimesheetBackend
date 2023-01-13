@@ -19,7 +19,7 @@ public class Timesheet {
     @Id
     private String id;
 
-    private int employeeId;
+    private String  employeeId;
 
     private Date endingDay;
 
