@@ -28,13 +28,10 @@ public class TimesheetService {
     }
 
 
-    public void saveTimesheet(Timesheet timesheet) {
+    public boolean saveTimesheet(Timesheet timesheet) {
         Timesheet byId = timesheetRepository.findById(timesheet.getId()).orElse(null);
         OffDayCount offDayCount = offDayCountRepository.findById(String.valueOf(timesheet.getEmployeeId())).orElse(new OffDayCount(timesheet.getEmployeeId(), new HashMap<>()));
-
-
         Map<String, OffDay> yearOffDayMap = offDayCount.getYearOffDayMap();
-        Map<String, OffDay> diff = new HashMap<>();
 
         if (byId != null) {
             for (TimesheetDetail timesheetDetail : byId.getTimesheetDetails()) {
@@ -85,8 +82,17 @@ public class TimesheetService {
         }
 
         offDayCount.setYearOffDayMap(yearOffDayMap);
-        offDayCountRepository.save(offDayCount);
-        timesheetRepository.save(timesheet);
+        if (isOffDayCountValid(offDayCount)) {
+            offDayCountRepository.save(offDayCount);
+            timesheetRepository.save(timesheet);
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    private boolean isOffDayCountValid(OffDayCount offDayCount) {
+        return offDayCount.getYearOffDayMap().values().stream().allMatch((offDay -> offDay.getFloatingDay() <= 3 && offDay.getHoliday() <= 10 && offDay.getVacation() <= 3));
     }
 
     public Timesheet getTimesheetById(String generateTimesheetId) {
