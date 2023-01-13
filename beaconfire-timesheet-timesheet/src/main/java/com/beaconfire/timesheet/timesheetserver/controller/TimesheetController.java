@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.PathParam;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 @RestController
 public class TimesheetController {
@@ -23,15 +24,18 @@ public class TimesheetController {
     }
 
     @PostMapping("/submit-timesheet")
-    public ResponseEntity<String> saveTimesheet(@RequestBody TimesheetRequest timesheetRequest) {
+    public ResponseEntity<Object> saveTimesheet(@RequestBody TimesheetRequest timesheetRequest) {
         timesheetRequest.setEmployeeId("10");
 
         Timesheet timesheet = new Timesheet();
         BeanUtils.copyProperties(timesheetRequest, timesheet);
         timesheet.setId(generateTimesheetId(timesheet.getEmployeeId(), timesheet.getEndingDay()));
-        timesheetService.saveTimesheet(timesheet );
+       if( timesheetService.saveTimesheet(timesheet )){
+           return new ResponseEntity<>("Successful", HttpStatus.OK);
+       }else{
+           return new ResponseEntity<>("Please check your Off Day", HttpStatus.BAD_REQUEST);
+       }
 
-        return new ResponseEntity<>("text", HttpStatus.OK);
     }
 
 
