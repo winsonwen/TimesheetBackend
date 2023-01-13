@@ -24,12 +24,12 @@ public class TimesheetController {
 
     @PostMapping("/submit-timesheet")
     public ResponseEntity<String> saveTimesheet(@RequestBody TimesheetRequest timesheetRequest) {
-        timesheetRequest.setEmployeeId(10);
+        timesheetRequest.setEmployeeId("10");
 
         Timesheet timesheet = new Timesheet();
         BeanUtils.copyProperties(timesheetRequest, timesheet);
         timesheet.setId(generateTimesheetId(timesheet.getEmployeeId(), timesheet.getEndingDay()));
-        timesheetService.saveTimesheet(timesheet);
+        timesheetService.saveTimesheet(timesheet );
 
         return new ResponseEntity<>("text", HttpStatus.OK);
     }
@@ -37,11 +37,11 @@ public class TimesheetController {
 
     @GetMapping("/timesheet")
     public ResponseEntity<Timesheet> getTimesheet( @PathParam("endingDay") Date endingDay) {
-        Timesheet timesheetById = timesheetService.getTimesheetById(generateTimesheetId(10, endingDay));
+        Timesheet timesheetById = timesheetService.getTimesheetById(generateTimesheetId("10", endingDay));
         return new ResponseEntity<>(timesheetById, HttpStatus.OK);
     }
 
-    private static String generateTimesheetId(int employeeId, Date endingDay) {
+    private static String generateTimesheetId(String employeeId, Date endingDay) {
         return employeeId + "_" + new SimpleDateFormat("dd/MM/yyyy").format(endingDay);
     }
 }

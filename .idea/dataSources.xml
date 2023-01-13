@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://database-1.cgigltwlc0lg.us-east-1.rds.amazonaws.com:3306/timesheet</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="@timesheet.hjv5u7n.mongodb.net" uuid="9d1c1e17-d93a-4e5c-9b44-3ea31343feed">
+      <driver-ref>mongo</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
+      <jdbc-url>mongodb+srv://timesheet.hjv5u7n.mongodb.net/?retryWrites=true&amp;w=majority</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

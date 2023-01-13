@@ -16,7 +16,7 @@ public class TimesheetRequest {
 
     private String id;
 
-    private int employeeId;
+    private String employeeId;
 
     private Date endingDay;
 
