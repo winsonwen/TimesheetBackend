@@ -25,7 +25,7 @@ public class HibernateConfig {
     protected LocalSessionFactoryBean sessionFactory(){
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("bf.project.user.domain");
+        sessionFactory.setPackagesToScan("com.beaconfire.timesheet.auth.dao");
         sessionFactory.setHibernateProperties(hibernateProperty());
         return sessionFactory;
     }
