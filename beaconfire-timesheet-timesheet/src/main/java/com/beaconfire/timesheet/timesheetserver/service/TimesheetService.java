@@ -1,9 +1,6 @@
 package com.beaconfire.timesheet.timesheetserver.service;
 
-import com.beaconfire.timesheet.timesheetserver.domain.OffDay;
-import com.beaconfire.timesheet.timesheetserver.domain.OffDayCount;
-import com.beaconfire.timesheet.timesheetserver.domain.Timesheet;
-import com.beaconfire.timesheet.timesheetserver.domain.TimesheetDetail;
+import com.beaconfire.timesheet.timesheetserver.domain.*;
 import com.beaconfire.timesheet.timesheetserver.repository.OffDayCountRepository;
 import com.beaconfire.timesheet.timesheetserver.repository.TimesheetRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -11,11 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -103,8 +96,34 @@ public class TimesheetService {
         return byId.orElse(null);
     }
 
-    public List<Timesheet>  getAllTimesheets()
+    public List<SummaryResponse> getAllTimesheets()
     {
-        return timesheetRepository.findAll(Sort.by(Sort.Direction.DESC, "endingDay"));
+        List<Timesheet> timesheets = timesheetRepository.findAll(Sort.by(Sort.Direction.DESC, "endingDay"));
+        List<SummaryResponse> res = new ArrayList<>();
+        for(Timesheet t: timesheets)
+        {
+            String eid = t.getEmployeeId();
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(t.getEndingDay());
+            String year = String.valueOf(calendar.get(Calendar.YEAR));
+            SummaryResponse.SummaryResponseBuilder srb = SummaryResponse.builder()
+                    .id(t.getId())
+                    .employeeId(t.getEmployeeId())
+                    .endingDay(t.getEndingDay())
+                    .timesheetDetails(t.getTimesheetDetails())
+                    .isSubmit(t.getIsSubmit())
+                    .approvalStatus(t.getApprovalStatus())
+                    .file(t.getFile());
+
+            offDayCountRepository.findById(eid).ifPresent(ob -> {
+                Map<String, OffDay> map = ob.getYearOffDayMap();
+                OffDay od = map.get(year);
+                srb.floatingDayOfYear(od.getFloatingDay());
+                srb.holidayOfYear(od.getHoliday());
+                srb.vacationOfYear(od.getVacation());
+            });
+            res.add(srb.build());
+        }
+        return res;
     }
 }

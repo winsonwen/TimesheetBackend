@@ -1,6 +1,7 @@
 package com.beaconfire.timesheet.timesheetserver.controller;
 
 
+import com.beaconfire.timesheet.timesheetserver.domain.SummaryResponse;
 import com.beaconfire.timesheet.timesheetserver.domain.Timesheet;
 import com.beaconfire.timesheet.timesheetserver.domain.TimesheetRequest;
 import com.beaconfire.timesheet.timesheetserver.service.TimesheetService;
@@ -50,9 +51,10 @@ public class TimesheetController {
         return employeeId + "_" + new SimpleDateFormat("dd/MM/yyyy").format(endingDay);
     }
 
-//    @GetMapping("/")
-//    public ResponseEntity<List<Timesheet>> getAllTimesheets()
-//    {
-//        return new ResponseEntity<>(timesheetService.getAllTimesheets(), HttpStatus.OK);
-//    }
+    @GetMapping("/")
+    public ResponseEntity<List<SummaryResponse>> getAllTimesheets()
+    {
+        return new ResponseEntity<>(timesheetService.getAllTimesheets(), HttpStatus.OK);
+    }
+
 }
