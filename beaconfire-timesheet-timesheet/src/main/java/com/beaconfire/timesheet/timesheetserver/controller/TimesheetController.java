@@ -1,6 +1,7 @@
 package com.beaconfire.timesheet.timesheetserver.controller;
 
 
+import com.beaconfire.timesheet.timesheetserver.domain.SummaryResponse;
 import com.beaconfire.timesheet.timesheetserver.domain.Timesheet;
 import com.beaconfire.timesheet.timesheetserver.domain.TimesheetRequest;
 import com.beaconfire.timesheet.timesheetserver.service.TimesheetService;
@@ -13,6 +14,7 @@ import javax.ws.rs.PathParam;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
+import java.util.List;
 
 @RestController
 public class TimesheetController {
@@ -48,4 +50,11 @@ public class TimesheetController {
     private static String generateTimesheetId(String employeeId, Date endingDay) {
         return employeeId + "_" + new SimpleDateFormat("dd/MM/yyyy").format(endingDay);
     }
+
+    @GetMapping("/")
+    public ResponseEntity<List<SummaryResponse>> getAllTimesheets()
+    {
+        return new ResponseEntity<>(timesheetService.getAllTimesheets(), HttpStatus.OK);
+    }
+
 }
