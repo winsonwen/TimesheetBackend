@@ -96,9 +96,9 @@ public class TimesheetService {
         return byId.orElse(null);
     }
 
-    public List<SummaryResponse> getAllTimesheets()
+    public List<SummaryResponse> getAllTimesheets(String eId)
     {
-        List<Timesheet> timesheets = timesheetRepository.findAll(Sort.by(Sort.Direction.DESC, "endingDay"));
+        List<Timesheet> timesheets = timesheetRepository.findByEmployeeId(eId, Sort.by(Sort.Direction.DESC, "endingDay"));
         List<SummaryResponse> res = new ArrayList<>();
         for(Timesheet t: timesheets)
         {
