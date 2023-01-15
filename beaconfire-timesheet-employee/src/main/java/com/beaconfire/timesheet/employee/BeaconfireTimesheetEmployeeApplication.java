@@ -1,16 +1,12 @@
 package com.beaconfire.timesheet.employee;
 
 import com.beaconfire.timesheet.employee.domain.Employee;
-import com.beaconfire.timesheet.employee.domain.EmployeeRepository;
+import com.beaconfire.timesheet.employee.dao.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.context.annotation.Bean;
-
-import java.util.List;
 
 @SpringBootApplication
 @EnableEurekaClient
