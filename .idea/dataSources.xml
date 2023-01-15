@@ -8,11 +8,11 @@
       <jdbc-url>mongodb+srv://timesheet.hjv5u7n.mongodb.net/?retryWrites=true&amp;w=majority</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="timesheet@database-1.cgigltwlc0lg.us-east-1.rds.amazonaws.com" uuid="bac44c5a-29ab-425d-9f86-e270dd041a80">
+    <data-source source="LOCAL" name="TimesheetDB@database-3.cxxevzfzlv3e.us-east-1.rds.amazonaws.com" uuid="bac44c5a-29ab-425d-9f86-e270dd041a80">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://database-1.cgigltwlc0lg.us-east-1.rds.amazonaws.com/timesheet</jdbc-url>
+      <jdbc-url>jdbc:mysql://database-3.cxxevzfzlv3e.us-east-1.rds.amazonaws.com:3306/TimesheetDB</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
