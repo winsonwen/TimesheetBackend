@@ -17,17 +17,11 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Employee createEmployee(String phone, String firstName, String lastName, String email, String address, String picture, String password,
-                                    String emergencyContact1Name, String emergencyContact1Phone,
-                                    String emergencyContact2Name, String emergencyContact2Phone) {
-        Optional<Employee> optionalEmployee = employeeRepository.findByEmail(email);
+    public Employee createEmployee(Employee employee) {
+        Optional<Employee> optionalEmployee = employeeRepository.findByEmail(employee.getEmail());
         if(optionalEmployee.isPresent()) {
             return null;
         } else {
-            Employee employee = Employee.builder().firstName(firstName).lastName(lastName).phone(phone).email(email).
-                    address(address).picture(picture).password(password).emergencyContact1Name(emergencyContact1Name).
-                    emergencyContact1Phone(emergencyContact1Phone).emergencyContact2Name(emergencyContact2Name).
-                    emergencyContact2Phone(emergencyContact2Phone).build();
             Long userId = employeeRepository.save(employee).getId();
             //TODO: create JwtModel here or not?
 
