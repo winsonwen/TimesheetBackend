@@ -23,8 +23,8 @@ eureka:
 cloud:
   aws:
     credentials:
-      access-key: AKIATB4HFZTK3ZEJC6GT
-      secret-key: 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
+      access-key: AKIA5HZ7N3TLXBXCCEXC
+      secret-key: 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
     region:
       static: us-east-1
     stack:
@@ -32,5 +32,5 @@ cloud:
 
 application:
   bucket:
-    name: timesheetstorage
+    name: timesheetappstorage
 
