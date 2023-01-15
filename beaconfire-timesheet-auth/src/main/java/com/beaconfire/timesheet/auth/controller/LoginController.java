@@ -3,6 +3,7 @@ package com.beaconfire.timesheet.auth.controller;
 import com.beaconfire.timesheet.auth.dao.User;
 import com.beaconfire.timesheet.auth.security.JwtUtils;
 import com.beaconfire.timesheet.auth.service.UserService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/login")
+@Getter
 public class LoginController {
     private UserService userService;
     private JwtUtils jwtUtils;

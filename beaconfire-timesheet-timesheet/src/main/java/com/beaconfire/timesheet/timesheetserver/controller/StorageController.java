@@ -21,6 +21,11 @@ public class StorageController {
         return new ResponseEntity<>(service.uploadFile(file), HttpStatus.OK);
     }
 
+    @PostMapping("/uploadTimesheet/{isTimesheetApproved}")
+    public ResponseEntity<String> uploadTimesheet(@RequestParam(value = "file") MultipartFile file, @PathVariable int isTimesheetApproved) {
+        return new ResponseEntity<>(service.uploadFileTimesheet(file, isTimesheetApproved), HttpStatus.OK);
+    }
+
     @GetMapping("/download/{fileName}")
     public ResponseEntity<ByteArrayResource> downloadFile(@PathVariable String fileName) {
         byte[] data = service.downloadFile(fileName);
