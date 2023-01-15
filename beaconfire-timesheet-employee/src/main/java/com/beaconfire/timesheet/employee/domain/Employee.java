@@ -14,32 +14,28 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String firstName;
+    private String lastName;
     private String phone;
     private String email;
     private String address;
-    private String profile;
+    private String picture;
     private String password;
 
-    @Column(name = "em1_firstname")
-    private String em1Firstname;
+    @Column(name = "emergency_contact1_name")
+    private String emergencyContact1Name;
 
-    @Column(name = "em1_lastname")
-    private String em1Lastname;
+    @Column(name = "emergency_contact1_phone")
+    private String emergencyContact1Phone;
 
-    @Column(name = "em1_phone")
-    private String em1Phone;
+    @Column(name = "emergency_contact2_name")
+    private String emergencyContact2Name;
 
-    @Column(name = "em2_firstname")
-    private String em2Firstname;
-
-    @Column(name = "em2_lastname")
-    private String em2Lastname;
-
-    @Column(name = "em2_phone")
-    private String em2Phone;
+    @Column(name = "emergency_contact2_phone")
+    private String emergencyContact2Phone;
 }
