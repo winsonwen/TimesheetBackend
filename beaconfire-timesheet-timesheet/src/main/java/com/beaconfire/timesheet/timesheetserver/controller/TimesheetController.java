@@ -53,9 +53,10 @@ public class TimesheetController {
         return employeeId + "_" + new SimpleDateFormat("dd/MM/yyyy").format(endingDay);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<SummaryResponse>> getAllTimesheets() {
-        return new ResponseEntity<>(timesheetService.getAllTimesheets(), HttpStatus.OK);
+    @GetMapping("/{eid}")
+    public ResponseEntity<List<SummaryResponse>> getAllTimesheets(@PathVariable String eid)
+    {
+        return new ResponseEntity<>(timesheetService.getAllTimesheets(eid), HttpStatus.OK);
     }
 
 }
