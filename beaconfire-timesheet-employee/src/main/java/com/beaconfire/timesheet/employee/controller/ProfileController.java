@@ -41,6 +41,7 @@ public class ProfileController {
 
     @PostMapping("/upload")
     public ResponseEntity<String> uploadFile(@RequestParam(value = "file") MultipartFile file) {
+        System.out.println("something uploaded");
         return new ResponseEntity<>(employeeService.uploadFile(file), HttpStatus.OK);
     }
 
